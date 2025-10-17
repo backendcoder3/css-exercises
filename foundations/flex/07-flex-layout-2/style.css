@@ -1,29 +1,111 @@
+/* Variables para colores */
+:root {
+  --header-bg: #9b28a4; /* Púrpura oscuro */
+  --sidebar-bg: #2b3b72; /* Azul oscuro */
+  --content-bg-top: white;
+  --content-bg-bottom: #f2f2ff; /* Lavanda muy claro para el fondo */
+  --footer-bg: #f9f9f9;
+}
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: sans-serif; /* Simplificamos la fuente */
   margin: 0;
+  /* El body es el contenedor Flex principal de columna */
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
 }
 
+/* 1. HEADER */
 .header {
-  height: 72px;
-  background: darkmagenta;
+  background: var(--header-bg);
+  /* Aplicamos un degradado similar al de la imagen */
+  background-image: linear-gradient(to right, #9b28a4, #c925d4); 
   color: white;
+  font-size: 1.5rem;
+  font-weight: 900;
+  padding: 20px;
+  /* Lo alineamos a la izquierda como se ve en la imagen */
+  text-align: left; 
 }
 
-.footer {
-  height: 72px;
-  background: #eee;
-  color: darkmagenta;
+/* 2. CONTENEDOR PRINCIPAL: La clave del diseño de dos columnas */
+.main-content {
+  display: flex;
+  flex: 1; /* Ocupa el espacio restante entre header y footer */
 }
 
+/* 3. SIDEBAR */
 .sidebar {
-  width: 300px;
-  background: royalblue;
-  box-sizing: border-box;
+  background: var(--sidebar-bg);
+  color: white;
+  width: 300px; /* Ancho fijo */
+  padding: 16px;
+  flex-shrink: 0; /* Asegura que no se encoja */
 }
 
+/* Estilos de lista y enlaces */
+.sidebar ul {
+  list-style-type: none;
+  font-size: 1.2rem; /* Tamaño de fuente más apropiado */
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+    padding: 8px 0;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: white;
+  /* Flexbox para alinear ícono y texto */
+  display: flex; 
+  align-items: center;
+}
+
+.sidebar .icon {
+    margin-right: 10px;
+}
+
+/* 4. ÁREA DE CARDS (El Contenido) */
+.cards-area {
+  flex: 1; /* Ocupa el espacio restante */
+  padding: 40px; /* Espacio alrededor del contenido */
+  background-color: var(--content-bg-top);
+  
+  /* Uso de Grid para las tarjetas (la mejor opción para columnas uniformes) */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Crea 2 columnas iguales */
+  gap: 30px; /* Espacio entre filas y columnas */
+  
+  /* Para el fondo que se extiende hacia abajo */
+  background-image: linear-gradient(to bottom, var(--content-bg-top) 550px, var(--content-bg-bottom) 550px);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+/* 5. CARDS */
 .card {
-  border: 1px solid #eee;
-  box-shadow: 2px 4px 16px rgba(0,0,0,.06);
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0,0,0,.1); /* Sombra más sutil */
   border-radius: 4px;
+  padding: 15px;
+  background-color: white; /* Asegura que la tarjeta es blanca */
+}
+
+/* 6. FOOTER */
+.footer {
+  background: var(--footer-bg);
+  color: #a428a4; /* Color similar al header, pero más oscuro */
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 15px;
+  text-align: center;
+  flex-shrink: 0;
+  
+  /* Borde redondeado sutil como en la imagen */
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
